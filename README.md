@@ -1,1 +1,2 @@
-# js-examples
+#js-examples
+Examples with javascript and jquery 
