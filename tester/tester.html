@@ -1,0 +1,172 @@
+<!Doctype HTML>
+<html>
+	<head>
+		<title>Homework form</title>
+		<link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.css"/>
+		<script src="../jquery-2.1.4.min.js" type="text/javascript"></script>
+	  <script src="homework.js" type="text/javascript"></script>
+  	<style>
+			hr {
+			color:#fcfcfc;
+			padding-top:0px;
+			}
+			.btn-group	{
+			margin-bottom:20px;
+			}
+      .hidden {
+        visibility: hidden;
+      } 
+		</style>
+	</head>
+	<body>
+		<div class="col-sm-12">
+			<h4> Form Name</h4>
+			<hr>
+		</div>
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="Number1" class="col-sm-2 control-label">First Number</label>
+				<div class="col-sm-3">
+				  <input type="number" class="form-control" id="Number1" placeholder="Input Number">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Number2" class="col-sm-2 control-label">Second Number</label>
+				<div class="col-sm-3">
+				  <input type="number" class="form-control" id="Number2" placeholder="Input Number">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="Number3" class="col-sm-2 control-label">Third Number</label>
+				<div class="col-sm-3">
+				  <input type="number" class="form-control" id="Number3" placeholder="Input Number">
+				</div>
+			</div>
+			<div class="btn-toolbar" role="toolbar" aria-label="...">
+				<div class="col-sm-2">
+				</div>
+				<div class="btn-group col-sm-3 functions" role="group" aria-label="...">
+					<input class="btn btn-primary min" type="button" value="Min">
+					<input class="btn btn-primary max" type="button" value="Max">
+					<input class="btn btn-primary prod" type="button" value="Prod">
+					<input class="btn btn-primary sum" type="button" value="Sum">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="result" class="col-sm-2 control-label">Your Answer</label>
+				<div class="col-sm-3">
+				  <input type="number" class="form-control" id="result" placeholder="Answer">
+				</div>
+			</div>
+			<div class="radio quest1">
+				<label for="radio-group" class="col-sm-2 control-label">Which of the following is correct?</label>
+				<div class="radio-group">
+					<label>
+						<input type="radio" name="optionsRadios1" id="optionsRadios1" value="option1">jQuery is a JSON Library
+					</label>
+				</div>
+				<div class="radio-group">
+					<label>
+						<input type="radio" name="optionsRadios1" id="optionsRadios2" value="jQuery is a JavaScript Library">jQuery is a JavaScript Library
+					</label>
+				</div>
+			</div>
+			<div class="radio quest2">
+				<label for="radio-group" class="col-sm-2 control-label">With jQuery, look at the following selector: $(*div.intro).What does it select?</label>
+				<div class="radio-group">
+					<label>
+						<input type="radio" name="optionsRadios2" id="optionsRadios3" value="option3">The first div element with id="intro"
+					</label>
+				</div>
+				<div class="radio-group">
+					<label>
+						<input type="radio" name="optionsRadios2" id="optionsRadios4" value="All div elements with class='intro'">All div elements with class="intro"
+					</label>
+				</div>
+				<div class="radio-group">
+					<label>
+						<input type="radio" name="optionsRadios2" id="optionsRadios5" value="option5">The first div element with class="intro"
+					</label>
+				</div>
+				<div class="radio-group">
+					<label>
+						<input type="radio" name="optionsRadios2" id="optionsRadios6" value="option6">All div elements with id="intro"
+					</label>
+				</div>
+			</div>
+			<div class="radio quest3">
+				<label for="radio-group" class="col-sm-2 control-label">Look at the following selector:$("div p").What does it select?</label>
+				<div class="radio-group">
+					<label>
+						<input type="radio" name="optionsRadios3" id="optionsRadios7" value="All p elements inside a div element">All p elements inside a div element    
+					</label>
+				</div>
+				<div class="radio-group">
+					<label>
+						<input type="radio" name="optionsRadios3" id="optionsRadios8" value="option8">All div elements with a p element
+					</label>
+				</div>
+				<div class="radio-group">
+					<label>
+						<input type="radio" name="optionsRadios3" id="optionsRadios9" value="option9" checked>The first p element inside a div element				
+					</label>
+				</div>
+			</div>
+			<div class="checkbox">
+				<label for="checkbox-group" class="col-sm-2 control-label">What is the correct jQuery code to set the background color of all p elements to black?</label>
+				<div class="checkbox-group">
+					<label value='$("p").css("background-color","black");' id=black>
+						<input type="checkbox"  id="checkbox1" value="1"><span>$("p").css("background-color","black");</span>
+					</label>
+				</div>
+				<div class="checkbox-group">
+					<label>
+						<input type="checkbox" id="checkbox2" value="2"><span>$("p").css("background-color",rbg(0,0,0));</span>
+					</label>
+				</div>
+				<div class="checkbox-group">
+					<label>
+						<input type="checkbox" id="checkbox3" value="3"><span>$("p").css("background-color", "#000");</span>
+					</label>
+				</div>
+				<div class="checkbox-group"> 
+					<label>
+						<input type="checkbox" id="checkbox4" value="4">$("p").css("background-color",#000);
+					</label>
+				</div>
+				<div class="col-sm-2">
+				</div>
+				<div class="checkbox-group">
+					<label>
+						<input type="checkbox" id="checkbox5" value="5">$("p").css("background-color",#000000);
+					</label>
+				</div>
+				<div class="col-sm-2">
+				</div>
+				<div class="checkbox-group">
+					<label>
+						<input type="checkbox" id="checkbox6"value="6">$("p").css({"background-color":#000});
+					</label>
+				</div>
+			</div>
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-1">
+				<div class="btn">
+					<button type="button" class="btn btn-xs btn-success" >
+						<span class="glyphicon glyphicon-ok-circle"></span>
+					</button>
+					<button type="button" class="btn btn-xs btn-danger">
+						<span class="glyphicon glyphicon-remove-circle"></span>
+					</button>
+				</div>
+				<div class="btn">
+					<button type="button" class="btn btn-xs btn-primary answer">Answer</button>
+				</div>
+				<div class="btn">
+					<button type="button" class="btn btn-xs btn-primary check">Check</button>
+				</div>
+			</div>
+		</form>
+	</body>
+</html>
