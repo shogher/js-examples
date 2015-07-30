@@ -14,7 +14,7 @@ $(document).ready(function() {
       return minimum;
     };
     function maximum(num1, num2, num3) {
-      var maximum= (num1 > num2) ? num1 : num2;
+      var maximum = (num1 > num2) ? num1 : num2;
       maximum = (maximum > num3) ? maximum : num3;
       return maximum;
     };
@@ -63,10 +63,10 @@ $(document).ready(function() {
           answer = answer && false;
         }
       }
-      if (answer==true) {
+      if (answer == true) {
         $(".btn-success").show();
         $(".btn-danger").hide();
-      } else if (answer==false) { 
+      } else if (answer == false) { 
         $(".btn-success").hide();
         $(".btn-danger").show();
       }
@@ -84,10 +84,23 @@ $(document).ready(function() {
       answer = answer + "Function: " + func;
       answer = answer + "("+num1+", "+ num2+", "+ num3+")";
       answer = answer + " = "+results+ "\n";
-      answer = answer + "\n"+ $(".quest1>label").text() +"\n"+ $(".quest1 input[type=radio]:eq(1)+span").text()+ "\n"; 
-      answer = answer + "\n"+ $(".quest2>label").text() +"\n"+ $(".quest2 input[type=radio]:eq(1)+span").text()+ "\n"; 
-      answer = answer + "\n"+ $(".quest3>label").text() +"\n"+ $(".quest3 input[type=radio]:eq(0)+span").text()+ "\n"; 
-      answer = answer + "\n"+ $(".quest4>label").text() +"\n"+ $(".quest4 input[type=checkbox]:eq(2)+span").text()+ "\n"+ $(".quest4 input[type=checkbox]:eq(0)+span").text(); 
+      answer = answer + "\n" + getQuestionsAnswer(".quest1", 1) + "\n"; 
+      answer = answer + "\n" + getQuestionsAnswer(".quest2", 1) + "\n"; 
+      answer = answer + "\n" + getQuestionsAnswer(".quest3", 0) + "\n"; 
+      answer = answer + "\n" + getCheckboxAnswer(".quest4",[0, 2]); 
       alert(answer);
     });
+    function getCheckboxAnswer(className, indexes)  {
+      var i,  answer = $(className + ">label").text();
+      for (i = 0; i < indexes.length; i++) {
+        answer += $(className + " input[type=checkbox]:eq(" + indexes[i] + ")+span").text();
+      }
+      return answer
+    }
+
+
+  function getQuestionsAnswer(className, index) {
+   return $(className + ">label").text() + "\n" + $(className + " input[type=radio]:eq(" + index + ")+span").text(); 
+  }
+  
 });
