@@ -2,7 +2,9 @@ tr.group,
 tr.group:hover {
 	background-color: #1e9db1 !important;
 }
-tr.group1, 
-tr.group1:hover {
-	background-color:#CEECF5  !important;
+.expand-icon {
+	rotate:90(deg);
+}
+.node-selected {
+	background-color: #1e9db1 !important;
 }
