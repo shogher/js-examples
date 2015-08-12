@@ -65,13 +65,15 @@ jQuery(document).ready(function($) {	var table;
 	var tableData = dataSet[0];
 	drawTable(tableData);
 	$('#tree').treeview({
-		levels: 1,
 		data: tree,
+		levels:1,
+		expandIcon: 'glyphicon glyphicon-play',
+        collapseIcon: 'glyphicon glyphicon-play',
 		onNodeSelected: function(event, data) {
 			if (data && data.id !== undefined) {
 				table.fnDestroy();
 				drawTable(dataSet[data.id])
 			}
-		}		
+		}
 	});
 });
