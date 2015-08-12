@@ -64,9 +64,8 @@ jQuery(document).ready(function($) {	var table;
 	} 
 	var tableData = dataSet[0];
 	drawTable(tableData);
-	$('#tree').treeview('collapseAll',  {
-		silent: true}); 
 	$('#tree').treeview({
+		levels: 1,
 		data: tree,
 		onNodeSelected: function(event, data) {
 			if (data && data.id !== undefined) {
