@@ -1,4 +1,5 @@
-jQuery(document).ready(function($) {	var table;
+jQuery(document).ready(function($) {
+	var table;
 	$('#demo').html( "<table cellpadding='0' cellspacing='0' border='0' class='display' id='example'></table>");
 	function drawTable(tableData) {
 		table = $('#example').dataTable({
@@ -52,8 +53,8 @@ jQuery(document).ready(function($) {	var table;
 					}
 				});
 			}
-		}); 
-		$('#example tbody').on( 'click', 'tr.group', function () {
+		});
+		$('#example tbody').on( 'click', 'tr.group', function() {
 			var currentOrder = table.order()[0];
 			if ( currentOrder[0] === 0 && currentOrder[1] === 'asc' ) {
 				table.order( [ 0, 'desc' ] ).draw();
@@ -66,14 +67,18 @@ jQuery(document).ready(function($) {	var table;
 	drawTable(tableData);
 	$('#tree').treeview({
 		data: tree,
-		levels:1,
-		expandIcon: 'glyphicon glyphicon-play',
-        collapseIcon: 'glyphicon glyphicon-play',
+		levels: 1,
+		expandIcon: 'glyphicon glyphicon-triangle-right',
+        collapseIcon: 'glyphicon glyphicon-triangle-bottom',
 		onNodeSelected: function(event, data) {
 			if (data && data.id !== undefined) {
 				table.fnDestroy();
 				drawTable(dataSet[data.id])
+			} else {
+				var e = data.nodes;
+				$("#demo").text(e);
+				console.log(data)
 			}
-		}
-	});
+		}	
+	}); 
 });
