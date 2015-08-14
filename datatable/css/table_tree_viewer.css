@@ -2,9 +2,17 @@ tr.group,
 tr.group:hover {
 	background-color: #1e9db1 !important;
 }
-.expand-icon {
-	rotate:90(deg);
-}
 .node-selected {
 	background-color: #1e9db1 !important;
+}
+#details {
+	background-color: #1e9db1 !important;
+	border-radius: 7%;
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #fff;
+}
+h5	{
+	line-height: 1.7;
 }
