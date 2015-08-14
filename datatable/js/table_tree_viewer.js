@@ -1,9 +1,11 @@
 jQuery(document).ready(function($) {
 	var table;
-	$('#demo').html( "<table cellpadding='0' cellspacing='0' border='0' class='display' id='example'></table>");
+	$('#demo').html( "<table cellpadding='0' cellspacing='0' border='0' class='display' id='example'></table><div id='details'></div>");
 	function drawTable(tableData) {
-		table = $('#example').dataTable({
-			'data': tableData, 
+		table = $('#example').DataTable({
+			'data': tableData,
+			'pagingType': 'simple_numbers',
+			'sPaginationType': 'bootstrap',
 			'language' : {
 				"sEmptyTable": "Տվյալները բացակայում են",
 				"sProcessing": "Կատարվում է...",
@@ -69,15 +71,20 @@ jQuery(document).ready(function($) {
 		data: tree,
 		levels: 1,
 		expandIcon: 'glyphicon glyphicon-triangle-right',
-        collapseIcon: 'glyphicon glyphicon-triangle-bottom',
+		collapseIcon: 'glyphicon glyphicon-triangle-bottom',
 		onNodeSelected: function(event, data) {
+			var item;
+			$("#example, #details, #example_wrapper").empty();
 			if (data && data.id !== undefined) {
-				table.fnDestroy();
+				table.destroy();
 				drawTable(dataSet[data.id])
 			} else {
-				var e = data.nodes;
-				$("#demo").text(e);
-				console.log(data)
+				var content = data.nodes;
+				str = "";
+				for (item in content) {
+				str ='<h5>' + str + '</h5>' +'\n'+ '<h5>' + content[item].text +'\n'+ '</h5>';
+			}
+			$("#details").html(str);
 			}
 		}	
 	}); 
