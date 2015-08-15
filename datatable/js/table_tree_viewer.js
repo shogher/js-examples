@@ -1,6 +1,5 @@
 jQuery(document).ready(function($) {
 	var table;
-	$('#demo').html( "<table cellpadding='0' cellspacing='0' border='0' class='display' id='example'></table><div id='details'></div>");
 	function drawTable(tableData) {
 		table = $('#example').DataTable({
 			'data': tableData,
@@ -73,18 +72,19 @@ jQuery(document).ready(function($) {
 		expandIcon: 'glyphicon glyphicon-triangle-right',
 		collapseIcon: 'glyphicon glyphicon-triangle-bottom',
 		onNodeSelected: function(event, data) {
-			var item;
+			var item, nodes, nodesText;
 			$("#example, #details, #example_wrapper").empty();
 			if (data && data.id !== undefined) {
 				table.destroy();
 				drawTable(dataSet[data.id])
+				$("#details").removeClass("details-background");
 			} else {
-				var content = data.nodes;
-				str = "";
-				for (item in content) {
-				str ='<h5>' + str + '</h5>' +'\n'+ '<h5>' + content[item].text +'\n'+ '</h5>';
-			}
-			$("#details").html(str);
+				nodes = data.nodes;
+				nodesText = "";
+				for (item in nodes) {
+					nodesText += '<h5>' + nodes[item].text + '</h5>';
+				}
+				$("#details").addClass("details-background").html(nodesText);
 			}
 		}	
 	}); 
