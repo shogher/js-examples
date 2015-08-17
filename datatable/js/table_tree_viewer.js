@@ -87,5 +87,8 @@ jQuery(document).ready(function($) {
 				$("#details").addClass("details-background").html(nodesText);
 			}
 		}	
-	}); 
+	});
+	$('#tree').treeview('selectNode', 1);
+    $('#tree').treeview('expandNode', [ 0, { levels: 1 } ]);
+ 
 });
