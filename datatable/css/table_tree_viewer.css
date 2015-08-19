@@ -3,6 +3,9 @@ tr.group:hover {
     background-color: #1e9db1 !important;
     color: white;
 }
+.group td:nth-child(2) {
+	text-align:right
+}
 .details-background {
     background-color: #1e9db1 !important;
     border-radius: 6px;
