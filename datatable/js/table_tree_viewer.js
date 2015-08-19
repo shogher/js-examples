@@ -3,9 +3,10 @@ jQuery(document).ready(function($) {
 	function drawTable(tableData) {
 		table = $('#example').DataTable({
 			'data': tableData,
-			'pagingType': 'simple_numbers',
-			'sPaginationType': 'bootstrap',
+			'paging': false,
 			'language' : {
+				"decimal": ".",
+           		"thousands": ",",
 				"sEmptyTable": "Տվյալները բացակայում են",
 				"sProcessing": "Կատարվում է...",
 				"sInfoThousands":  ",",
@@ -32,11 +33,25 @@ jQuery(document).ready(function($) {
 				{ 'title': 'Գնման ենթակա  ապրանքներ, աշխատանքներ և ծառայությունների խմբեր' }, 
 				{ 'title': 'Գնման ենթակա ապրանքներ, աշխատանքներ և ծառայություններ' }, 
 				{ 'title': 'Չափման միավորը' }, 
-				{ 'title': 'Ամբողջ քանակը (ծավալը)'}, 
-				{ 'title': 'Գումարը'}
+				{ 'title': 'Ամբողջ քանակը (ծավալը)',
+				  'sClass': 'text-right',
+				}, 
+				{ 'title': 'Գումարը',
+				  'sClass': 'text-right'
+				}
 			],
 			"columnDefs": [
-				{ "visible": false, "targets": 0 }
+				{ "visible": false, "targets": 0 },
+				{ "visible": true, "targets": 4 ,
+                "render": function ( data, type, row ) {
+                    return data.replace(", ", ".").replace(" ",",");
+                },
+},
+				{ "visible": true, "targets": 3 ,
+                "render": function ( data, type, row ) {
+                    return data.replace(", ", ".").replace(" ",",");
+                },
+},
 			],
 			"order": [[ 0, 'asc' ]],
 			"displayLength": 25,
@@ -48,7 +63,7 @@ jQuery(document).ready(function($) {
 					var amount= api.rows({ page: 'current' }).data()[i][5];
 					if ( last !== group ) {
 						$(rows).eq( i ).before(
-							'<tr class="group"><td colspan="3">'+group+'<td colspan="2">' + amount + '</td></td></tr>'
+							'<tr class="group"><td colspan="3">'+group+'<td colspan="1">' + amount + '</td></td></tr>'
 							);
 						last = group;
 					}
