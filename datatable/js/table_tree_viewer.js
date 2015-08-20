@@ -1,5 +1,36 @@
 jQuery(document).ready(function($) {
 	var table;
+	var dataType = function(data, type, row) {
+		return data.replace(", ", ".").replace(" ",",");
+	};
+	var numberView = function(number,decimalDelimiter, thousandDelimiter) {
+		var number, str, decimal;
+		number = number.replace(",", ".");
+        number = parseFloat(number, 10);
+        str = "";
+        decimal = decimalDelimiter + number*10%10;
+        number= number-(number%1);
+        while(number>1000) {
+			if (str) {
+           		str = thousandDelimiter + number % 1000 + str ;
+			} else {
+				str=number % 1000;
+			}
+           	number = Math.floor(number /1000);
+        } 
+        str =  number  + thousandDelimiter + str + decimal;
+        return str;
+    };
+	var initTree = function(tree) {
+		var item, itemNode, nodeText;
+		for (item in tree) {
+			for (itemNode in tree[item].nodes) {
+				nodeText = tree[item].nodes[itemNode];
+				nodeText.text = nodeText.text.branch + "  " +numberView( nodeText.text.sum, ".", ",");
+			}	
+		}	
+		return tree;
+	};
 	function drawTable(tableData) {
 		table = $('#example').DataTable({
 			'data': tableData,
@@ -43,15 +74,9 @@ jQuery(document).ready(function($) {
 			"columnDefs": [
 				{ "visible": false, "targets": 0 },
 				{ "visible": true, "targets": 4 ,
-                "render": function ( data, type, row ) {
-                    return data.replace(", ", ".").replace(" ",",");
-                },
-},
-				{ "visible": true, "targets": 3 ,
-                "render": function ( data, type, row ) {
-                    return data.replace(", ", ".").replace(" ",",");
-                },
-},
+                  "render": dataType},
+				{ "visible": true, "targets": 3,
+                  "render": dataType}
 			],
 			"order": [[ 0, 'asc' ]],
 			"displayLength": 25,
@@ -63,7 +88,7 @@ jQuery(document).ready(function($) {
 					var amount= api.rows({ page: 'current' }).data()[i][5];
 					if ( last !== group ) {
 						$(rows).eq( i ).before(
-							'<tr class="group"><td colspan="3">'+group+'<td colspan="1">' + amount + '</td></td></tr>'
+							'<tr class="group"><td colspan="3">'+group+'<td colspan="1">' + dataType(amount) + '</td></td></tr>'
 							);
 						last = group;
 					}
@@ -82,7 +107,7 @@ jQuery(document).ready(function($) {
 	var tableData = dataSet[0];
 	drawTable(tableData);
 	$('#tree').treeview({
-		data: tree,
+		data: initTree(tree),
 		levels: 1,
 		expandIcon: 'glyphicon glyphicon-triangle-right',
 		collapseIcon: 'glyphicon glyphicon-triangle-bottom',
@@ -97,7 +122,7 @@ jQuery(document).ready(function($) {
 				nodes = data.nodes;
 				nodesText = "";
 				for (item in nodes) {
-					nodesText += '<h5>' + nodes[item].text + '</h5>';
+					nodesText += '<h5>' + nodes[item].text + '</h6>';
 				}
 				$("#details").addClass("details-background").html(nodesText);
 			}
@@ -105,5 +130,6 @@ jQuery(document).ready(function($) {
 	});
 	$('#tree').treeview('selectNode', 1);
     $('#tree').treeview('expandNode', [ 0, { levels: 1 } ]);
+
  
 });
