@@ -3,24 +3,41 @@ jQuery(document).ready(function($) {
 	var dataType = function(data, type, row) {
 		return data.replace(", ", ".").replace(" ",",");
 	};
-	var numberView = function(number,decimalDelimiter, thousandDelimiter) {
-		var number, str, decimal;
-		number = number.replace(",", ".");
+	var numberView = function(input, decimalDelimiter, thousandDelimiter) {
+		var number, str, decimal, decimalPart, module;
+		number = input.replace(",", ".");
         number = parseFloat(number, 10);
+		if (isNaN(number))  {
+			return input;
+		} ;
         str = "";
-        decimal = decimalDelimiter + number*10%10;
-        number= number-(number%1);
-        while(number>1000) {
+		decimalPart = number - Math.floor(number);
+        decimal = decimalDelimiter + Math.floor(decimalPart * 10);
+        number = number - (number % 1);
+		if (number < 1000) {
+			return number + decimal;
+		};
+        while(number >= 1000) {
+			module = number % 1000;
+			if (module >= 0 && module <= 9) {
+		   		module = "00" + module;
+			} 
+			else if (module >= 10 && module <= 99) {
+		   		module = "0" + module;
+			} 
 			if (str) {
-           		str = thousandDelimiter + number % 1000 + str ;
+           		str = thousandDelimiter + module + str ;
 			} else {
-				str=number % 1000;
+				str = module;
 			}
-           	number = Math.floor(number /1000);
+           		number = Math.floor(number / 1000);
         } 
         str =  number  + thousandDelimiter + str + decimal;
         return str;
     };
+	var quantityView = function(quantity) {
+			return numberView(quantity, ".", ",")
+	};
 	var initTree = function(tree) {
 		var item, itemNode, nodeText;
 		for (item in tree) {
@@ -75,8 +92,8 @@ jQuery(document).ready(function($) {
 				{ "visible": false, "targets": 0 },
 				{ "visible": true, "targets": 4 ,
                   "render": dataType},
-				{ "visible": true, "targets": 3,
-                  "render": dataType}
+				{ "visible": true, "targets": 3 ,
+                  "render": quantityView}
 			],
 			"order": [[ 0, 'asc' ]],
 			"displayLength": 25,
