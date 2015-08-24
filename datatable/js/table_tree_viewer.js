@@ -30,8 +30,8 @@ jQuery(document).ready(function($) {
         formatedNumber = number + thousandDelimiter + formatedNumber + decimalPart;
         return formatedNumber;
     };
-    var quantityView = function (quantity) {
-        return numberView(quantity, '.', ',');
+    var formattedNumberView = function (number) {
+        return numberView(number, '.', ',');
     };
     var initTree = function (tree) {
         var item, itemNode, nodeText;
@@ -103,11 +103,11 @@ jQuery(document).ready(function($) {
             }, {
                 visible: true,
                 targets: 5,
-                render: quantityView
+                render: formattedNumberView
             }, {
                 visible: true,
                 targets: 4,
-                render: quantityView
+                render: formattedNumberView
             }],
             order: [
                 [0, 'asc']
@@ -129,7 +129,7 @@ jQuery(document).ready(function($) {
                     if (last !== group) {
                         $(rows).eq(i).before(
                             '<tr class=\'group\'><td colspan=\'3\'>' + group +
-                            '<td colspan=\'2\'>' + quantityView(amount) + '</td></td></tr>'
+                            '<td colspan=\'2\'>' + formattedNumberView(amount) + '</td></td></tr>'
                         );
                         last = group;
                     }
