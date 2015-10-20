@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+<head>
+<meta charset='utf-8'>
+<!--link rel='shortcut icon' type='image/ico' href='http://minfin.nkr.am/img/favicon.ico'-->
+<meta name='viewport' content='initial-scale=1.0, maximum-scale=2.0'>
+<title>Պետական Գնումների պլան</title>
+<link rel='stylesheet' href='bootstrap.css'>
+<script src='angular.min.js'></script>
+<script src='data.json'></script>
+<script src='data.js'></script>
+</head>
+<body>
+<div class='container-fluid'>
+  <h2>Պետության կարիքների համար 2015 թվականի իրականացվող գնումների պլան</h2>
+  <div class='row'>
+    <div class='col-xs-4' id='tree'>
+		<ul  class="list-group" ng-app="Application" ng-controller="TreeController">
+			<li class="list-group-item" ng-repeat="data in tree" ng-click="showme=true"&&"hideme=false"&&"addClass()" ng-dblclick ="showme=false"&&"hideme=true">
+			{{data.text}}
+				<ul  class="list-group" ng-if="data.nodes.length">
+					<li class="list-group-item" ng-repeat="item in data.nodes" ng-init ="hideme=true" ng-hide = "hideme" ng-show = "showme" >
+					{{item.text}}
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+    <div class='col-xs-8' id='demo'>
+      <table class='table table-bordered' id='example'></table>
+    </div>
+  </div>
+</div>
+</body>
+</html>
