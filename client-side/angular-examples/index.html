@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app = "myApp">
     <head>
         <meta charset='utf-8'>
@@ -17,7 +17,7 @@
             <div class='row'>
                 <div class='col-xs-4' id='tree'>
                     <ul class="list-group"  >
-                        <li class="list-group-item" ng-repeat="data in tree" ng-click="showme=true"&&"hideme=false"> <span ng-if="data.nodes.length"class="glyphicon glyphicon-triangle-bottom"></span>
+                        <li class="list-group-item" ng-repeat="data in tree" ng-click="showme=true"&&"hideme=false"&&"text=data.text"> <span ng-if="data.nodes.length"class="glyphicon glyphicon-triangle-bottom"></span>
                         {{data.text}}
                         <ul  class="list-group" ng-if="data.nodes.length">
                             <li class="list-group-item" ng-repeat="item in data.nodes" ng-init ="hideme=true" ng-hide = "hideme" ng-show = "showme" >
@@ -37,10 +37,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="data in table">
-                                <th colspan="6">{{data.parent}}
-                                </th>
-                                <td ng-if="$index<6" ng-repeat="value in data.nodes">{{value[$index]}}
+							<th colspan="6">{{tree[0].text}}
+							</th>						
+							<tr ng-repeat="data in table | filter : parent:'tree[0].text'">
+							    <td ng-if="$index<6" ng-repeat="value in data.nodes">{{value[$index]}}
                                 </td>
                             </tr>
                         </tbody>
